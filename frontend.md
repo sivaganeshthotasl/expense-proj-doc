@@ -46,7 +46,7 @@ unzip /tmp/frontend.zip
 
 **Create a reverse proxy configuration in Nginx to forward client requests to the backend service.**
 
-👉Why Do We Need a Reverse Proxy? (Simple Explanation)
+**Why Do We Need a Reverse Proxy? (Simple Explanation)**
 
 👉The frontend (Nginx) serves static content like HTML, CSS, and JavaScript
 
@@ -65,6 +65,25 @@ unzip /tmp/frontend.zip
 **Nginx works like a bridge between the user and the backend service.Users talk to Nginx, and Nginx talks to the backend.**
 
 **Create Nginx Reverse Proxy Configuration.**
+
+Before creating a Conf file we need to create a backend dns recond in the route 53
+
+**👉Create DNS Record for Backend**
+
+**Create a DNS record in Amazon Route 53:**
+
+---> Record Type: A
+---> Name: backend.robossl.shop
+---> Value: (Backend Server Private IP)
+
+**Verify DNS:**
+
+```
+nslookup backend.robossl.shop
+```
+
+Ensure it resolves to the correct backend server IP.
+
 
 ```
 vim /etc/nginx/default.d/expense.conf
@@ -85,11 +104,70 @@ location /health {
 
 **Note: Ensure you replace localhost with the actual IP address or DNS name of the backend server in the Nginx configuration.**
 
-reate DNS Record for Backend
+**👉Restart Nginx Service to load the changes of the configuration.**
 
-Create a DNS record in Amazon Route 53:
+```
+systemctl restart nginx
+```
 
-Record Type: A
-Name: backend.robossl.shop
-Value: <Backend Server Private IP>
+
+
+**End-to-End Application Verification**
+
+After completing the frontend, backend, and database setup, verify that the application is working correctly.
+
+**Step 1: Access the Application**
+
+Open the application in a web browser using the server URL or domain
+
+Navigate to the “Add Expense” page
+
+**Step 2: Add Expense Data**
+
+**👉Enter the following details:**
+
+  ---> Amount: (any value, e.g., 1000)
+  
+  ---> Description: travel
+
+  ---> click on add 
+
+  ---> you can see the response details
+
+  
+**Step 3: Verify Data in Database**
+
+  ---> Connect to the MySQL database:
+
+  ```
+mysql -h mysql.robossl.shop -u root -p
+```
+
+**Step 4: Check Database and Tables**
+
+```
+show databases;
+```
+
+```
+use <database_name>;
+```
+
+```
+show tables;
+```
+
+**Step 5: Verify Inserted Data**
+
+```
+select * from <table_name>;
+```
+
+**You should see the newly added record (e.g., description: travel) in the table.**
+
+
+
+
+
+
 
