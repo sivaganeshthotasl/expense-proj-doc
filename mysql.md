@@ -66,14 +66,67 @@ If it returns the correct IP address, DNS setup is successful.
 
 **👉Connect to MySQL Server**
 
-We use the MySQL client package (mysql) to connect to the database:
+**👉We use the MySQL client package (mysql) to connect to the database:**
 
 ```
 mysql -h <host-address> -u root -p<password>
 ```
 
+**👉Example using DNS:**
+
+```
+mysql -h mysql.robossl.shop -uroot -p<password>
+```
+
+-h → Hostname or IP address of MySQL server
+-u → Username (root)
+-p → Prompts for password
+
+**👉If both MySQL client and server are on the same machine, you can simply run:**
+
+```
+mysql
+```
+
+This connects to the local MySQL server using default settings.
 
 
-  
+**👉Verify Databases**
 
-  
+**Once connected, you will get the MySQL prompt. Run:**
+
+```
+show databases;
+```
+
+This displays all available databases (schemas).
+
+**👉Select a Database**
+
+Choose a database to work with:
+
+```
+use <database>;
+```
+
+**👉To check tables inside the selected database:**
+
+```
+show tables;
+```
+
+**👉To view the data inside a table:**
+
+```
+select * from <table_name>;
+```
+
+**Simple Explanation**
+
+**1. First, create a DNS record so we can use a hostname instead of an IP**
+
+**2. Verify the DNS is working**
+
+**3. Connect to MySQL using the client**
+
+**4. Check databases, tables, and data to confirm everything is working properly**
