@@ -76,13 +76,13 @@ Before creating a Conf file we need to create a backend dns recond in the route 
 ---> Name: backend.robossl.shop
 ---> Value: (Backend Server Private IP)
 
+**Note: Update Frontend Public Ipv4 record in the robossl.shop host. you just edit and replace with new public ipv4 ip.**
+
 **Verify DNS:**
 
 ```
 nslookup backend.robossl.shop
 ```
-
-**Note: Update Frontend Public Ipv4 record in the robossl.shop host. you just edit and replace with new public ipv4 ip.**
 
 Ensure it resolves to the correct backend server IP.
 
