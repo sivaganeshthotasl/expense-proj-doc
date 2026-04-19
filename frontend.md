@@ -84,6 +84,7 @@ nslookup backend.robossl.shop
 
 Ensure it resolves to the correct backend server IP.
 
+**👉Create Nginx Reverse Proxy Configuration**
 
 ```
 vim /etc/nginx/default.d/expense.conf
